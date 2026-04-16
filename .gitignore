@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_convert
+
+# Dataset (too large for git)
+data/*.csv
+data/*.zip
+data/raw/
+data/processed/
+!data/.gitignore
+
+# Runtime artifacts
+alerts.db
+alerts.db-journal
+alerts.db-wal
+alerts.db-shm
+*.log
+
+# Model artifacts kept, but large ones excluded
+models/*.bin
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Env
+.env
+.env.local
