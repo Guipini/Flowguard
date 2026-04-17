@@ -1,6 +1,6 @@
 # Dataset directory
 
-**Not committed to git** (CSVs are too large — see `.gitignore`).
+**Not committed to git** (CSVs are too large - see `.gitignore`).
 
 ## What goes here
 
@@ -10,7 +10,7 @@
 4. Copy these two files into this folder:
    - `Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv`
    - `Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv`
-5. Delete the rest of the extracted files — we don't need them.
+5. Delete the rest of the extracted files - we don't need them.
 
 These two days contain the attack labels we train on (DDoS + Port Scan). Benign traffic comes from the same files.
 
