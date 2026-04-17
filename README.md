@@ -1,6 +1,6 @@
 # AI-Powered Network Traffic Anomaly Detector
 
-> **CPAN226 Network Programming — Final Project (Winter/Summer 2026)**
+> **CPAN226 Network Programming - Final Project (Winter/Summer 2026)**
 > Captures live network traffic with Scapy, aggregates packets into flows, and uses a Random Forest classifier trained on CICIDS2017 to flag DDoS and port-scan attacks in real time. A Streamlit dashboard visualizes alerts as they happen.
 
 ## Architecture (high level)
@@ -19,7 +19,7 @@ attack_simulator.py ─▶ 127.0.0.1 ─▶ capture.py (Scapy sniff)
 ```
 
 - **Offline** (Jupyter notebooks): train the Random Forest on CICIDS2017, export `models/detector.pkl`, `models/scaler.pkl`, `models/metadata.json`, `models/feature_names.json`.
-- **Online** (Python scripts): 3-terminal demo — capture, attack simulator, dashboard.
+- **Online** (Python scripts): 3-terminal demo - capture, attack simulator, dashboard.
 
 ## Repository layout
 
@@ -51,7 +51,7 @@ attack_simulator.py ─▶ 127.0.0.1 ─▶ capture.py (Scapy sniff)
 ### 1. Install Npcap (required for Scapy sniffing)
 
 1. Download Npcap from https://nmap.org/npcap/
-2. Run the installer **and check "Support loopback traffic (Npcap Loopback Adapter)"** — without this, you cannot sniff localhost traffic.
+2. Run the installer **and check "Support loopback traffic (Npcap Loopback Adapter)"** - without this, you cannot sniff localhost traffic.
 3. Reboot if prompted.
 
 ### 2. Create and activate virtual environment
@@ -75,7 +75,7 @@ data/
 └── Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv
 ```
 
-(You can delete the other extracted days — we only train on DDoS + Port Scan.)
+(You can delete the other extracted days, we only train on DDoS + Port Scan.)
 
 > **Why not `GeneratedLabelledFlows.zip`?** That archive has a slightly different schema and requires more preprocessing. `MachineLearningCSV.zip` is the standard "ML-ready" format most CICIDS2017 tutorials and papers use.
 
@@ -97,7 +97,7 @@ Run notebooks in order: `01` → `02` → `03` → `04`. After `03`, `models/det
 > .\.venv\Scripts\activate
 > ```
 
-### Terminal 1 — Dashboard
+### Terminal 1 - Dashboard
 
 ```bash
 streamlit run src/dashboard.py
@@ -105,13 +105,13 @@ streamlit run src/dashboard.py
 
 A browser opens at `http://localhost:8501`.
 
-### Terminal 2 — Live capture
+### Terminal 2 - Live capture
 
 ```bash
 python src/capture.py --iface "\Device\NPF_Loopback"
 ```
 
-### Terminal 3 — Launch an attack (rehearse at low rate first)
+### Terminal 3 - Launch an attack (rehearse at low rate first)
 
 ```bash
 # SYN flood
@@ -126,11 +126,11 @@ Within ~1–2 seconds the dashboard should show a flagged alert.
 ## Protocols & Network Concepts Exercised
 
 - **Raw socket capture** (Scapy's `sniff()` — Layer 2/3)
-- **Ethernet / IP headers** — source/dest IPs, TTL, protocol number
+- **Ethernet / IP headers** - source/dest IPs, TTL, protocol number
 - **TCP** — ports, flags (SYN/ACK/FIN/RST/PSH/URG), window size
 - **UDP** — ports, length
-- **Flow construction** — NetFlow-style 5-tuple aggregation (src IP, dst IP, src port, dst port, protocol)
-- **Encapsulation** — Ethernet → IP → TCP/UDP → payload
+- **Flow construction** - NetFlow-style 5-tuple aggregation (src IP, dst IP, src port, dst port, protocol)
+- **Encapsulation** - Ethernet → IP → TCP/UDP → payload
 
 ## Ethics
 

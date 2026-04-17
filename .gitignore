@@ -43,3 +43,7 @@ desktop.ini
 # Env
 .env
 .env.local
+
+report/build_report.py
+
+demo/demo_script.md

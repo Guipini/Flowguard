@@ -1,0 +1,17 @@
+[
+  "flow_duration",
+  "total_fwd_packets",
+  "total_backward_packets",
+  "flow_bytes_per_s",
+  "flow_packets_per_s",
+  "fwd_packet_length_mean",
+  "bwd_packet_length_mean",
+  "average_packet_size",
+  "flow_iat_mean",
+  "flow_iat_std",
+  "syn_flag_count",
+  "ack_flag_count",
+  "fin_flag_count",
+  "rst_flag_count",
+  "psh_flag_count"
+]

@@ -1,0 +1,100 @@
+{
+  "feature_names": [
+    "flow_duration",
+    "total_fwd_packets",
+    "total_backward_packets",
+    "flow_bytes_per_s",
+    "flow_packets_per_s",
+    "fwd_packet_length_mean",
+    "bwd_packet_length_mean",
+    "average_packet_size",
+    "flow_iat_mean",
+    "flow_iat_std",
+    "syn_flag_count",
+    "ack_flag_count",
+    "fin_flag_count",
+    "rst_flag_count",
+    "psh_flag_count"
+  ],
+  "feature_units": {
+    "flow_duration": "microseconds",
+    "total_fwd_packets": "count",
+    "total_backward_packets": "count",
+    "flow_bytes_per_s": "per_second",
+    "flow_packets_per_s": "per_second",
+    "fwd_packet_length_mean": "bytes",
+    "bwd_packet_length_mean": "bytes",
+    "average_packet_size": "bytes",
+    "flow_iat_mean": "microseconds",
+    "flow_iat_std": "microseconds",
+    "syn_flag_count": "count",
+    "ack_flag_count": "count",
+    "fin_flag_count": "count",
+    "rst_flag_count": "count",
+    "psh_flag_count": "count"
+  },
+  "label_map": {
+    "BENIGN": 0,
+    "DDoS": 1,
+    "PortScan": 2
+  },
+  "class_names": [
+    "benign",
+    "ddos",
+    "portscan"
+  ],
+  "dataset": "CICIDS2017 (Friday DDoS + PortScan)",
+  "n_samples": 437207,
+  "created_at": "2026-04-16T20:14:53.867310+00:00",
+  "model": {
+    "type": "RandomForestClassifier",
+    "n_estimators": 100,
+    "class_weight": "balanced",
+    "random_state": 42
+  },
+  "training_metrics": {
+    "train_time_seconds": 2.92,
+    "val_accuracy": 0.9996,
+    "val_macro_f1": 0.9997,
+    "val_per_class_f1": {
+      "benign": 0.9996,
+      "ddos": 0.9995,
+      "portscan": 0.9998
+    }
+  },
+  "severity_thresholds": {
+    "alert_threshold": 0.1322,
+    "target_fpr": 0.001,
+    "achieved_fpr_val": 0.001007,
+    "calibrated_on": "validation benign flows"
+  },
+  "splits": {
+    "train": 306044,
+    "val": 65581,
+    "test": 65582,
+    "strategy": "stratified 70/15/15"
+  },
+  "trained_at": "2026-04-16T20:29:41.127815+00:00",
+  "evaluation": {
+    "test_accuracy": 0.9996,
+    "test_macro_f1": 0.9996,
+    "test_confusion_matrix": [
+      [
+        32748,
+        6,
+        2
+      ],
+      [
+        19,
+        19184,
+        0
+      ],
+      [
+        2,
+        0,
+        13621
+      ]
+    ]
+  },
+  "evaluated_at": "2026-04-17T02:34:44.402661+00:00"
+}
