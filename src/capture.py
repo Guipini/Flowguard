@@ -304,11 +304,18 @@ def main() -> int:
                     help='Berkeley Packet Filter expression (default: "ip").')
     ap.add_argument('--db', default=str(DEFAULT_DB), type=Path,
                     help=f'SQLite database path (default: {DEFAULT_DB.name}).')
+    ap.add_argument('--threshold', type=float, default=None,
+                    help='Override the calibrated alert threshold from metadata.json. '
+                         'Typical runtime values: 0.05 (loopback demo), 0.1322 (CICIDS2017-calibrated).')
     args = ap.parse_args()
 
     print(f'Loading detector from {MODELS_DIR} ...')
-    detector = Detector(MODELS_DIR)
-    print(f'  features: {len(detector.feature_names)}  threshold: {detector.threshold:.4f}')
+    detector = Detector(MODELS_DIR, threshold_override=args.threshold)
+    if args.threshold is not None:
+        print(f'  features: {len(detector.feature_names)}  threshold: {detector.threshold:.4f} '
+              f'(overridden; calibrated was {detector._calibrated_threshold:.4f})')
+    else:
+        print(f'  features: {len(detector.feature_names)}  threshold: {detector.threshold:.4f}')
 
     flow_builder = FlowBuilder(idle_timeout_s=60.0)
     packet_queue: queue.Queue = queue.Queue(maxsize=PACKET_QUEUE_MAX)

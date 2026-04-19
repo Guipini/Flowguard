@@ -56,13 +56,15 @@ class Detector:
                 persist(decision)
     """
 
-    def __init__(self, models_dir: Path) -> None:
+    def __init__(self, models_dir: Path, threshold_override: float | None = None) -> None:
         # Load artifacts
         self.model = joblib.load(models_dir / 'detector.pkl')
         metadata = json.loads((models_dir / 'metadata.json').read_text())
         self._feature_names: list[str] = metadata['feature_names']
         self._class_names:   list[str] = metadata['class_names']
-        self._threshold:     float     = metadata['severity_thresholds']['alert_threshold']
+        calibrated = float(metadata['severity_thresholds']['alert_threshold'])
+        self._threshold: float = float(threshold_override) if threshold_override is not None else calibrated
+        self._calibrated_threshold: float = calibrated
         self._metadata = metadata
 
         self._validate_contract()
